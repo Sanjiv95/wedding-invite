@@ -1,0 +1,2 @@
+This folder is for images used on the wedding site (photos, maps, etc.).
+Add any image files here (e.g., `cover.jpg`, `map.png`).
