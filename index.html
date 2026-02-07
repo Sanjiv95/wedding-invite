@@ -71,12 +71,50 @@
         <h2>Highlights</h2>
         <p><a href="https://github.com/shyamjos/wedding-website">View Source Code on GitHub</a></p>
       </section>
+<section class="rsvp" id="rsvp">
+  <h2>RSVP</h2>
+  <p>Please let us know if you can make it!</p>
 
-      <section class="rsvp">
-        <h2>RSVP</h2>
-        <p>If you'd like to join us, please RSVP by emailing:</p>
-        <p class="rsvp-button"><a href="mailto:nanzpraks123@gmail.com?subject=Wedding%20RSVP">Send RSVP</a></p>
-      </section>
+  <form 
+    action="https://docs.google.com/forms/d/e/1FAIpQLSd4uz7SgpTVBNQTncGWmpvTUQr53lzwjSpaETrtydIZv3HTVw/formResponse" 
+    method="POST" 
+    id="rsvp-form"
+    target="hidden_iframe"
+  >
+    <div class="form-group">
+      <input type="text" name="entry.1466417396" placeholder="Your Name" required>
+    </div>
+
+    <div class="form-group">
+      <select name="entry.877086558" required>
+        <option value="" disabled selected>Will you attend?</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Maybe">Maybe</option>
+      </select>
+    </div>
+
+    <button type="submit" class="rsvp-submit">Send RSVP</button>
+  </form>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){handleFormSuccess();}"></iframe>
+
+  <div id="thank-you-msg" style="display:none; margin-top:20px; color:var(--accent); font-weight:600; text-align:center;">
+    <p>Thank you! Your RSVP has been received.</p>
+  </div>
+</section>
+
+<script>
+  var submitted = false;
+  function handleFormSuccess() {
+    document.getElementById('rsvp-form').style.display = 'none';
+    document.getElementById('thank-you-msg').style.display = 'block';
+    document.getElementById('thank-you-msg').scrollIntoView({ behavior: 'smooth' });
+  }
+  document.getElementById('rsvp-form').onsubmit = function() {
+    submitted = true;
+  };
+</script>
 
       <footer>
         <p>We can't wait to celebrate with you — Love, Sanjiv &amp; Nandhana</p>
