@@ -4,31 +4,123 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>You're Invited — Our Wedding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="container">
-      <section class="hero">
-        <h1>We're getting married</h1>
-        <p class="names">Sanjiv &amp; Nandhana</p>
-        <p class="date">Saturday, August 29, 2026</p>
+      <header class="site-nav">
+        <nav>
+          <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#events">EVENTS</a></li>
+            <li><a href="#highlights">HIGHLIGHTS</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section id="home" class="hero">
+        <!-- hero image removed -->
+        <h1>Sanjiv &amp; Nandhana</h1>
+        <p class="date">29.08.2026</p>
+        
+
+        <div class="countdown" aria-hidden="false">
+          <div class="count-col">
+            <div class="num" id="days">00</div>
+            <div class="label">Days</div>
+          </div>
+          <div class="count-col">
+            <div class="num" id="hours">00</div>
+            <div class="label">Hours</div>
+          </div>
+          <div class="count-col">
+            <div class="num" id="minutes">00</div>
+            <div class="label">Minutes</div>
+          </div>
+          <div class="count-col">
+            <div class="num" id="seconds">00</div>
+            <div class="label">Seconds</div>
+          </div>
+        </div>
       </section>
 
-      <section class="details">
-        <h2>Details</h2>
-        <p class="location">The Garden Venue<br/>123 Celebration Ave, City</p>
-        <p class="time">Ceremony at 4:00 PM — Reception to follow</p>
+      <section id="events" class="details">
+        <h2>Events</h2>
+        <div class="event-list">
+          <article class="event">
+            <h3>Sangeeth</h3>
+            <p><span class="time">28 August 2026 — 11:30 AM</span> · <span class="location">Nandhus House - Rave</span></p>
+          </article>
+          <article class="event">
+            <h3>Wedding - Muhurtham</h3>
+            <p><span class="time">29 August 2026 — 11:30 AM</span> · <span class="location">Ayodhya Auditorium - Payyanur, Kannur District, Kerala</span></p>
+          </article>
+          <article class="event">
+            <h3>Reception</h3>
+            <p><span class="time">04 September 2026 — 7:00 PM</span> · <span class="location">TBD</span></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Gallery removed -->
+
+      <section id="highlights" class="highlights">
+        <h2>Highlights</h2>
+        <p><a href="https://github.com/shyamjos/wedding-website">View Source Code on GitHub</a></p>
       </section>
 
       <section class="rsvp">
         <h2>RSVP</h2>
         <p>If you'd like to join us, please RSVP by emailing:</p>
-        <p class="rsvp-button"><a href="mailto:your@email.com?subject=Wedding%20RSVP">Send RSVP</a></p>
+        <p class="rsvp-button"><a href="mailto:nanzpraks123@email.com?subject=Wedding%20RSVP">Send RSVP</a></p>
       </section>
 
       <footer>
         <p>We can't wait to celebrate with you — Love, Sanjiv &amp; Nandhana</p>
       </footer>
     </main>
+    <script>
+      (function(){
+        // Target wedding date: 29 August 2026 local time (16:00)
+        const target = new Date(2026, 7, 29, 16, 0, 0);
+        const $days = document.getElementById('days');
+        const $hours = document.getElementById('hours');
+        const $minutes = document.getElementById('minutes');
+        const $seconds = document.getElementById('seconds');
+
+        function pad(n){return String(n).padStart(2,'0');}
+
+        function update(){
+          const now = new Date();
+          let diff = target - now;
+          if(diff <= 0){
+            $days.textContent = '00';
+            $hours.textContent = '00';
+            $minutes.textContent = '00';
+            $seconds.textContent = '00';
+            clearInterval(timer);
+            return;
+          }
+          const days = Math.floor(diff / (1000*60*60*24));
+          diff -= days * (1000*60*60*24);
+          const hours = Math.floor(diff / (1000*60*60));
+          diff -= hours * (1000*60*60);
+          const minutes = Math.floor(diff / (1000*60));
+          diff -= minutes * (1000*60);
+          const seconds = Math.floor(diff / 1000);
+
+          $days.textContent = pad(days);
+          $hours.textContent = pad(hours);
+          $minutes.textContent = pad(minutes);
+          $seconds.textContent = pad(seconds);
+        }
+
+        update();
+        const timer = setInterval(update, 1000);
+      })();
+    </script>
   </body>
 </html>
