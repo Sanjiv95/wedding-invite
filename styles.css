@@ -273,37 +273,42 @@ footer {
   28% { transform: scale(1); }
   42% { transform: scale(1.15); }
   70% { transform: scale(1); }
-}.ganesha-top-bg {
+}
+.ganesha-top-bg {
   position: absolute;
-  /* Increased from 20px to move it down below the navigation */
   top: 100px; 
   left: 50%;
   transform: translateX(-50%);
-  
-  /* Adjusted width slightly for better framing */
   width: 240px; 
   height: auto;
-  
-  mix-blend-mode: multiply;
-  opacity: 0.7;
   z-index: 1; 
   pointer-events: none;
-  filter: sepia(0.5) brightness(1.1) contrast(1.1);
-}
 
+  /* 1. Core Blending */
+  mix-blend-mode: multiply;
+  
+  /* 2. Force Transparency - This tells mobile browsers NOT to render a box */
+  background-color: transparent !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* 3. Refined Filters - Contrast 1.2+ helps 'punch out' the background */
+  opacity: 0.8;
+  filter: sepia(0.5) brightness(1.1) contrast(1.3);
+  -webkit-filter: sepia(0.5) brightness(1.1) contrast(1.3);
+}
 .hero {
   /* Increased margin to give the Ganesha more room to sit above the card */
-  margin-top: 140px; 
+  margin-top: 110px; 
   position: relative;
 }
 
-/* Mobile Adjustments - specifically for smaller screens */
+
 @media (max-width: 768px) {
   .ganesha-top-bg {
     width: 160px;
     top: 80px;
-  }
-  .hero {
-    margin-top: 100px;
+    /* Extra safeguard for mobile Safari */
+    isolation: isolate; 
   }
 }
