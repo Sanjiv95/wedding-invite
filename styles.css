@@ -273,4 +273,37 @@ footer {
   28% { transform: scale(1); }
   42% { transform: scale(1.15); }
   70% { transform: scale(1); }
+}.ganesha-top-bg {
+  position: absolute;
+  /* Increased from 20px to move it down below the navigation */
+  top: 100px; 
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Adjusted width slightly for better framing */
+  width: 240px; 
+  height: auto;
+  
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  z-index: 1; 
+  pointer-events: none;
+  filter: sepia(0.5) brightness(1.1) contrast(1.1);
+}
+
+.hero {
+  /* Increased margin to give the Ganesha more room to sit above the card */
+  margin-top: 140px; 
+  position: relative;
+}
+
+/* Mobile Adjustments - specifically for smaller screens */
+@media (max-width: 768px) {
+  .ganesha-top-bg {
+    width: 160px;
+    top: 80px;
+  }
+  .hero {
+    margin-top: 100px;
+  }
 }
