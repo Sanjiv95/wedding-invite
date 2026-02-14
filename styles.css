@@ -61,25 +61,48 @@ body, html {
 
 .pre-title { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--kasavu-gold); letter-spacing: 2px; }
 
-/* --- NEW SLIM TYPOGRAPHY --- */
+/* --- NAMES TYPOGRAPHY --- */
 .names-display {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3rem, 10vw, 5.5rem);
-  font-weight: 300; /* Very slim weight */
+  font-weight: 300;
   font-style: italic;
   margin: 15px 0;
   color: var(--text-main);
-  letter-spacing: 2px; /* Airy spacing */
+  letter-spacing: 2px;
   line-height: 1.1;
+  display: flex;
+  flex-direction: row; /* Default for Desktop */
+  align-items: center;
+  justify-content: center;
 }
 
 .names-display .amp { 
-  font-family: 'Cormorant Garamond', serif; 
   font-style: italic; 
   color: var(--kasavu-gold); 
   font-size: 0.7em; 
-  margin: 0 15px; 
+  margin: 0 20px; 
   font-weight: 300;
+}
+
+/* --- MOBILE 3-LINE STACK --- */
+@media (max-width: 768px) {
+  .names-display {
+    flex-direction: column; /* Force 3 lines */
+    font-size: 3.5rem; /* Adjust size for mobile fit */
+    line-height: 1.2;
+  }
+
+  .names-display .amp {
+    margin: 10px 0; /* Spacing between names and & */
+    font-size: 0.5em;
+  }
+  
+  .names-display .name-top,
+  .names-display .name-bottom {
+    display: block;
+    width: 100%;
+  }
 }
 
 .hero-date { letter-spacing: 5px; font-size: 0.8rem; color: var(--text-main); opacity: 0.8; text-transform: uppercase; }
@@ -90,11 +113,36 @@ body, html {
   border-top: 1px solid rgba(0,0,0,0.1);
 }
 
-/* --- COUNTDOWN --- */
+/* --- UPDATED COUNTDOWN BAR --- */
 .countdown-bar {
-  display: flex; gap: 50px; background: var(--kerala-emerald); color: var(--bg-ivory);
-  padding: 35px 70px; margin-top: -45px; z-index: 11; box-shadow: 0 20px 50px rgba(22, 48, 32, 0.3);
+  display: flex; 
+  justify-content: center; /* Centers items inside the bar */
+  gap: 50px; 
+  background: var(--kerala-emerald); 
+  color: var(--bg-ivory);
+  padding: 35px 70px; 
+  margin: -45px auto 0 auto; /* Added 'auto' to left/right margins */
+  z-index: 11; 
+  box-shadow: 0 20px 50px rgba(22, 48, 32, 0.3);
+  width: fit-content; /* Critical: shrink bar to its content size */
+  min-width: 300px;
 }
+
+/* --- UPDATED MOBILE TWEAKS --- */
+@media (max-width: 768px) {
+  .countdown-bar {
+    gap: 30px; 
+    padding: 20px 30px; 
+    margin-top: -30px; /* Slight lift to overlap the hero card */
+    width: 85%; /* Give it a percentage width on mobile */
+    min-width: unset; /* Allow it to be smaller than 300px if needed */
+  }
+  
+  .count-item span {
+    font-size: 1.8rem; /* Slightly smaller numbers so they don't wrap */
+  }
+}
+
 .count-item { text-align: center; }
 .count-item span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--kasavu-gold); line-height: 1; font-weight: 300; }
 .count-item label { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }

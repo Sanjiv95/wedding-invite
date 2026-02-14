@@ -32,9 +32,13 @@
         <div class="hero-card">
           <p class="pre-title">Together with our families</p>
           <div class="names-row">
-            <h1 class="names-display">Nandhana <span class="amp">&amp;</span> Sanjiv</h1>
-          </div>
-          <p class="hero-date">29 AUGUST 2026 • PAYYANUR, KERALA</p>
+  <h1 class="names-display">
+    <span class="name-top">Nandhana</span>
+    <span class="amp">&amp;</span>
+    <span class="name-bottom">Sanjiv</span>
+  </h1>
+</div>
+          <p class="hero-date">29 AUGUST 2026  PAYYANUR, KERALA</p>
           <div class="kasavu-accent"></div>
         </div>
         
@@ -91,11 +95,6 @@
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
             </select>
 
             <select name="entry.734955195" required>
@@ -132,10 +131,16 @@
 
     <script>
       var submitted = false;
-      function handleFormSuccess() {
-        document.getElementById('rsvp-form').style.display = 'none';
-        document.getElementById('thank-you-msg').style.display = 'block';
-      }
+function handleFormSuccess() {
+  if(submitted) {
+    document.getElementById('rsvp-form').style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('rsvp-form').style.display = 'none';
+      document.getElementById('thank-you-msg').style.display = 'block';
+      document.getElementById('thank-you-msg').innerHTML = "<h3>See you there!</h3><p>Your RSVP has been sent.</p>";
+    }, 500);
+  }
+}
       document.getElementById('rsvp-form').onsubmit = function() { submitted = true; };
       (function(){
         const target = new Date(2026, 7, 29, 11, 30, 0);
