@@ -3,158 +3,150 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>You're Invited — Our Wedding</title>
+    <title> Nandhana & Sanjiv — Our Wedding</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="container">
+    
+    <div class="paper-overlay"></div>
+    <div class="illustration tree-left"></div>
+    <div class="illustration leaf-right"></div>
+    <div class="illustration tree-bottom-right"></div>
+
+    <main class="main-wrapper">
+      
       <header class="site-nav">
         <nav>
           <ul>
             <li><a href="#home">HOME</a></li>
             <li><a href="#events">EVENTS</a></li>
-            <li><a href="#highlights">HIGHLIGHTS</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
           </ul>
         </nav>
       </header>
 
       <section id="home" class="hero">
-        <!-- hero image removed -->
-        <h1>Sanjiv &amp; Nandhana</h1>
-        <p class="date">29.08.2026</p>
+        <div class="hero-card">
+          <p class="pre-title">Together with our families</p>
+          <div class="names-row">
+            <h1 class="names-display">Nandhana <span class="amp">&amp;</span> Sanjiv</h1>
+          </div>
+          <p class="hero-date">29 AUGUST 2026 • PAYYANUR, KERALA</p>
+          <div class="kasavu-accent"></div>
+        </div>
         
-
-        <div class="countdown" aria-hidden="false">
-          <div class="count-col">
-            <div class="num" id="days">00</div>
-            <div class="label">Days</div>
-          </div>
-          <div class="count-col">
-            <div class="num" id="hours">00</div>
-            <div class="label">Hours</div>
-          </div>
-          <div class="count-col">
-            <div class="num" id="minutes">00</div>
-            <div class="label">Minutes</div>
-          </div>
-          <div class="count-col">
-            <div class="num" id="seconds">00</div>
-            <div class="label">Seconds</div>
-          </div>
+        <div class="countdown-bar">
+          <div class="count-item"><span id="days">00</span><label>Days</label></div>
+          <div class="count-item"><span id="hours">00</span><label>Hrs</label></div>
+          <div class="count-item"><span id="minutes">00</span><label>Mins</label></div>
         </div>
       </section>
 
-      <section id="events" class="details">
-        <h2>Events</h2>
-        <div class="event-list">
-          <article class="event">
+      <section id="events" class="events-section">
+        <h2 class="section-title">Schedule of Events</h2>
+        <div class="event-grid">
+          <div class="event-box">
+            <span class="event-label">FRIDAY, AUG 28</span>
             <h3>Sangeeth</h3>
-            <p><span class="time">28 August 2026 — 11:30 AM</span> · <span class="location">Nandhus House - Rave</span></p>
-          </article>
-          <article class="event">
-            <h3>Wedding - Muhurtham</h3>
-            <p><span class="time">29 August 2026 — 11:30 AM</span> · <span class="location">Ayodhya Auditorium - Payyanur, Kannur District, Kerala</span></p>
-          </article>
-          <article class="event">
+            <p>11:30 AM · Nandhus House</p>
+            <a href="https://maps.app.goo.gl/hFAppUajixqds8459" target="_blank" class="map-btn">View on Map</a>
+          </div>
+
+          <div class="event-box main-event">
+            <span class="event-label">SATURDAY, AUG 29</span>
+            <h3>Wedding Muhurtham</h3>
+            <p>11:30 AM · Ayodhya Auditorium</p>
+            <a href="https://maps.app.goo.gl/hFAppUajixqds8459" target="_blank" class="map-btn">View on Map</a>
+            <div class="kasavu-accent"></div>
+          </div>
+
+          <div class="event-box">
+            <span class="event-label">FRIDAY, SEPT 04</span>
             <h3>Reception</h3>
-            <p><span class="time">04 September 2026 — 7:00 PM</span> · <span class="location">TBD</span></p>
-          </article>
+            <p>7:00 PM · Location TBD</p>
+            <span class="map-btn disabled">TBD</span>
+          </div>
         </div>
       </section>
 
-      <!-- Gallery removed -->
-      <!-- Highlights removed -->
+      <section id="rsvp" class="rsvp-section">
+        <div class="rsvp-card">
+          <h2>RSVP</h2>
+          <form action="https://docs.google.com/forms/d/e/1FAIpQLSd4uz7SgpTVBNQTncGWmpvTUQr53lzwjSpaETrtydIZv3HTVw/formResponse" method="POST" id="rsvp-form" target="hidden_iframe">
+            <input type="text" name="entry.1466417396" placeholder="Your Full Name" required>
+            <select name="entry.877086558" required>
+              <option value="" disabled selected>Are you coming?</option>
+              <option value="Yes">Yes!</option>
+              <option value="No">No</option>
+              <option value="Maybe">Maybe</option>
+            </select>
 
-<section class="rsvp" id="rsvp">
-  <h2>RSVP</h2>
-  <p>Please let us know if you can make it!</p>
+            <select name="entry.973692904" required>
+              <option value="" disabled selected>How many are you?</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
 
-  <form 
-    action="https://docs.google.com/forms/d/e/1FAIpQLSd4uz7SgpTVBNQTncGWmpvTUQr53lzwjSpaETrtydIZv3HTVw/formResponse" 
-    method="POST" 
-    id="rsvp-form"
-    target="hidden_iframe"
-  >
-    <div class="form-group">
-      <input type="text" name="entry.1466417396" placeholder="Your Name" required>
-    </div>
+            <select name="entry.734955195" required>
+              <option value="" disabled selected>Events you plan to attend?</option>
+              <option value="Sangeeth">Sangeeth</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Reception">Reception</option>  
+              <option value="All">All Events</option> 
+            </select>
 
-    <div class="form-group">
-      <select name="entry.877086558" required>
-        <option value="" disabled selected>Will you attend?</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-        <option value="Maybe">Maybe</option>
-      </select>
-    </div>
+            <select name="entry.305230036" required>
+              <option value="" disabled selected>Are you a friend of Sanjiv, Nandhana, or both?</option>
+              <option value="Sanjiv">Sanjiv</option>
+              <option value="Nandhana">Nandhana</option>
+              <option value="Both">Both</option>
+            </select>
 
-    <button type="submit" class="rsvp-submit">Send RSVP</button>
-  </form>
+            <button type="submit">Submit</button>
+          </form>
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){handleFormSuccess();}"></iframe>
+          <div id="thank-you-msg" style="display:none;">Response Received.</div>
+        </div>
+      </section>
 
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){handleFormSuccess();}"></iframe>
-
-  <div id="thank-you-msg" style="display:none; margin-top:20px; color:var(--accent); font-weight:600; text-align:center;">
-    <p>Thank you! Your RSVP has been received.</p>
+     <footer>
+  <div class="footer-content">
+    <div class="footer-line"></div>
+    <p class="footer-names">
+      Nandhana <span class="heart">❤</span> Sanjiv
+    </p>
   </div>
-</section>
-
-<script>
-  var submitted = false;
-  function handleFormSuccess() {
-    document.getElementById('rsvp-form').style.display = 'none';
-    document.getElementById('thank-you-msg').style.display = 'block';
-    document.getElementById('thank-you-msg').scrollIntoView({ behavior: 'smooth' });
-  }
-  document.getElementById('rsvp-form').onsubmit = function() {
-    submitted = true;
-  };
-</script>
-
-      <footer>
-        <p>We can't wait to celebrate with you — Love, Sanjiv &amp; Nandhana</p>
-      </footer>
+</footer>
     </main>
+
     <script>
+      var submitted = false;
+      function handleFormSuccess() {
+        document.getElementById('rsvp-form').style.display = 'none';
+        document.getElementById('thank-you-msg').style.display = 'block';
+      }
+      document.getElementById('rsvp-form').onsubmit = function() { submitted = true; };
       (function(){
-        // Target wedding date: 29 August 2026 local time (16:00)
-        const target = new Date(2026, 7, 29, 16, 0, 0);
-        const $days = document.getElementById('days');
-        const $hours = document.getElementById('hours');
-        const $minutes = document.getElementById('minutes');
-        const $seconds = document.getElementById('seconds');
-
-        function pad(n){return String(n).padStart(2,'0');}
-
-        function update(){
-          const now = new Date();
-          let diff = target - now;
-          if(diff <= 0){
-            $days.textContent = '00';
-            $hours.textContent = '00';
-            $minutes.textContent = '00';
-            $seconds.textContent = '00';
-            clearInterval(timer);
-            return;
-          }
-          const days = Math.floor(diff / (1000*60*60*24));
-          diff -= days * (1000*60*60*24);
-          const hours = Math.floor(diff / (1000*60*60));
-          diff -= hours * (1000*60*60);
-          const minutes = Math.floor(diff / (1000*60));
-          diff -= minutes * (1000*60);
-          const seconds = Math.floor(diff / 1000);
-
-          $days.textContent = pad(days);
-          $hours.textContent = pad(hours);
-          $minutes.textContent = pad(minutes);
-          $seconds.textContent = pad(seconds);
-        }
-
-        update();
-        const timer = setInterval(update, 1000);
+        const target = new Date(2026, 7, 29, 11, 30, 0);
+        const update = () => {
+          const now = new Date(); let diff = target - now;
+          if(diff <= 0) return;
+          document.getElementById('days').innerText = String(Math.floor(diff / (1000*60*60*24))).padStart(2,'0');
+          document.getElementById('hours').innerText = String(Math.floor((diff / (1000*60*60)) % 24)).padStart(2,'0');
+          document.getElementById('minutes').innerText = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2,'0');
+        };
+        setInterval(update, 1000); update();
       })();
     </script>
   </body>
