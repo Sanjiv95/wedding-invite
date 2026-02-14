@@ -10,7 +10,9 @@
 body, html { 
   margin: 0; padding: 0; 
   font-family: 'Montserrat', sans-serif; 
-  background-color: var(--bg-ivory); 
+  /* CHANGE: We move the ivory color to the background-color property 
+     but ensure it doesn't block the fixed div below it */
+  background-color: transparent; 
   color: var(--text-main); 
   overflow-x: hidden; 
   scroll-behavior: smooth;
@@ -25,29 +27,55 @@ body, html {
 }
 
 /* --- COLORED ILLUSTRATIONS --- */
-.illustration {
-  position: fixed; background-repeat: no-repeat; background-size: contain; z-index: 1;
-  pointer-events: none; opacity: 0.7;
+/* 2. Apply the new mural background */
+/* Ensure the body is the anchor */
+body {
+  position: relative;
+  min-height: 100vh;
 }
 
-.tree-left {
-  top: -50px; left: -100px; width: 600px; height: 800px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cpath d='M35 150 Q 45 80 75 10 L 85 10 Q 55 80 45 150 Z' fill='rgba(100, 120, 105, 0.4)'/%3E%3Cpath d='M30 150 Q 40 80 80 10' fill='none' stroke='%23163020' stroke-width='0.5'/%3E%3Cpath d='M80 10 Q 50 25 30 50 L 40 60 Q 60 35 80 10' fill='rgba(120, 148, 125, 0.5)'/%3E%3Cpath d='M80 10 Q 60 20 40 40 M80 10 Q 90 30 95 60' fill='none' stroke='%23163020' stroke-width='0.3'/%3E%3C/svg%3E");
+.mural-background {
+  /* Use 'fixed' to keep it pinned to the browser glass */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  
+  /* Image settings */
+  background-image: url("images/background-mural.svg"); 
+  background-repeat: no-repeat;
+  
+  /* 'cover' ensures no white gaps on the sides */
+  background-size: cover !important; 
+  
+  /* 'center 10%' ensures the top pattern is visible 
+     while the center-bottom architecture stays framed */
+  background-position: center 10% !important; 
+  
+  opacity: 0.5; 
+  z-index: -2; 
+  pointer-events: none;
 }
 
-.leaf-right {
-  top: 15%; right: -180px; width: 600px; height: 600px; transform: rotate(-15deg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M5 95 Q 30 40 95 5 Q 60 60 5 95 Z' fill='rgba(130, 158, 135, 0.4)'/%3E%3Cpath d='M5 95 Q 50 80 95 5' fill='none' stroke='%23b08d57' stroke-width='0.6'/%3E%3Cpath d='M20 85 Q 10 60 5 40' fill='none' stroke='%23163020' stroke-width='0.2'/%3E%3C/svg%3E");
+/* Mobile Tweak for stability */
+@media (max-width: 768px) {
+  .mural-background {
+    /* Center it fully on mobile to avoid the image looking 'slid' over */
+    background-position: center center !important;
+    /* Using 100% height here prevents jumping when address bars hide */
+    height: -webkit-fill-available; 
+  }
 }
-
-.tree-bottom-right {
-  bottom: -100px; right: -50px; width: 450px; height: 600px; opacity: 0.7; transform: rotate(180deg) scaleX(-1);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cpath d='M30 150 Q 40 80 80 10' fill='none' stroke='%23163020' stroke-width='0.8'/%3E%3C/svg%3E");
+/* 3. Adjust your paper texture to sit on top */
+.paper-overlay {
+  z-index: 1; /* Keep it below text but above background */
+  opacity: 0.8;
 }
 
 /* --- MAIN WRAPPER & NAV --- */
 .main-wrapper { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; }
-.site-nav { padding: 40px 0; text-align: center; }
+.site-nav { padding: 10px 0; text-align: center; padding-bottom: 0px;}
 .site-nav ul { list-style: none; display: flex; justify-content: center; gap: 40px; padding: 0; }
 .site-nav a { text-decoration: none; color: var(--text-main); font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
 
@@ -277,7 +305,7 @@ footer {
 .ganesha-top-bg {
   position: absolute;
   /* 1. POSITION: Increase this if it hits the navigation */
-  top: 100px; 
+  top: 30px; 
   left: 50%;
   transform: translateX(-50%);
   
@@ -295,7 +323,7 @@ footer {
   /* 3. SPACING: This is the most important number! */
   /* It must be large enough to hold the Ganesha + some extra space */
   /* If Ganesha is 300px, set this to 350px or 400px */
-  margin-top: 200px; 
+  margin-top: 100px; 
   position: relative;
 }
 
@@ -304,9 +332,9 @@ footer {
   .ganesha-top-bg {
     width: 180px; 
     height: 180px;
-    top: 90px;
+    top: 50px;
   }
   .hero {
-    margin-top: 100px;
+    margin-top: 70px;
   }
 }
