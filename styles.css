@@ -83,7 +83,22 @@ body {
 .site-nav a { text-decoration: none; color: var(--text-main); font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
 
 /* --- HERO SECTION --- */
-.hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
+.hero { 
+  /* CHANGE: Use min-height instead of fixed height for better stability */
+  min-height: 90vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  
+  /* CHANGE: Remove 'justify-content: center'. 
+     Instead, use top padding to push the card down. 
+     This gives the Ganesha a "static" top edge to anchor to. */
+  justify-content: flex-start; 
+  padding-top: 210px; 
+  
+  position: relative; 
+}
+
 .hero-card {
   background: var(--white); padding: 100px 60px; text-align: center;
   box-shadow: 0 40px 100px rgba(0,0,0,0.05); border: 1px solid rgba(176, 141, 87, 0.2);
@@ -302,7 +317,10 @@ footer {
 
 .ganesha-top-bg {
   position: absolute;
-  top: 30px; 
+  /* Use a negative value to "pull" it up. 
+     This bypasses the flexbox alignment differences between browsers. */
+  top: 50px; 
+  
   left: 50%;
   transform: translateX(-50%);
   width: 300px; 
@@ -312,7 +330,6 @@ footer {
   z-index: 5;
   pointer-events: none;
 }
-
 .hero {
   margin-top: 100px; 
   position: relative;
@@ -325,6 +342,6 @@ footer {
     top: 50px;
   }
   .hero {
-    margin-top: 70px;
+    margin-top: 20px;
   }
 }
