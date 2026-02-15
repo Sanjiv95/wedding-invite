@@ -448,3 +448,29 @@ footer {
     font-size: 13px;
   }
 }
+
+button:disabled {
+  background-color: #ccc !important;
+  border-color: #999 !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+/* Ensure the hidden iframe is completely out of the layout */
+#hidden_iframe {
+  display: none !important;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  border: none;
+  position: absolute;
+}
+
+/* Ensure the thank you message doesn't show a button artifact */
+#thank-you-msg {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}

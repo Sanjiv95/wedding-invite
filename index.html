@@ -81,6 +81,14 @@
       <section id="rsvp" class="rsvp-section">
         <div class="rsvp-card">
           <h2>RSVP</h2>
+<p class="rsvp-deadline-text">Please respond by <strong>August 1st, 2026</strong></p>
+          <div id="rsvp-closed-msg" style="display:none; text-align: center; margin: 20px 0;">
+            <h3 style="font-family: 'Playfair Display'; color: #987500;">RSVP is now closed</h3>
+            <p style="font-family: 'Montserrat';">We look forward to seeing you at the wedding!</p>
+          </div>
+
+          <div id="thank-you-msg" style="display:none; text-align: center; margin: 20px 0;"></div>
+
           <form action="https://docs.google.com/forms/d/e/1FAIpQLSd4uz7SgpTVBNQTncGWmpvTUQr53lzwjSpaETrtydIZv3HTVw/formResponse" method="POST" id="rsvp-form" target="hidden_iframe">
             <input type="text" name="entry.1466417396" placeholder="Your Full Name" required>
             <input type="text" name="entry.1156887547" placeholder="Contact Number?" required>
@@ -123,10 +131,10 @@
               <option value="Both">Both</option>
             </select>
 
-            <button type="submit">Submit</button>
+            <button type="submit" id="submit-btn">Submit</button>
           </form>
-          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){handleFormSuccess();}"></iframe>
-          <div id="thank-you-msg" style="display:none;">Response Received.</div>
+
+          <iframe name="hidden_iframe" id="hidden_iframe" style="position: absolute; width: 0; height: 0; border: none; visibility: hidden;" onload="if(submitted){handleFormSuccess();}"></iframe>
         </div>
       </section>
 
@@ -139,23 +147,40 @@
         </div>
       </footer>
     </main>
-
+    
     <script>
       var submitted = false;
       
+      // 1. DEADLINE LOGIC
+      (function() {
+        const deadline = new Date(2026, 8, 1, 23, 59, 59); // Aug 1, 2026
+        const now = new Date();
+        const form = document.getElementById('rsvp-form');
+        const closedMsg = document.getElementById('rsvp-closed-msg');
+
+        if (now > deadline) {
+          if (form) form.style.display = "none";
+          if (closedMsg) closedMsg.style.display = "block";
+        }
+      })();
+
+      // 2. FORM SUCCESS HANDLER
       function handleFormSuccess() {
         if(submitted) {
-          document.getElementById('rsvp-form').style.opacity = '0';
+          const form = document.getElementById('rsvp-form');
+          const thankYou = document.getElementById('thank-you-msg');
+          form.style.opacity = '0';
           setTimeout(() => {
-            document.getElementById('rsvp-form').style.display = 'none';
-            document.getElementById('thank-you-msg').style.display = 'block';
-            document.getElementById('thank-you-msg').innerHTML = "<h3>See you there!</h3><p>Your RSVP has been sent.</p>";
+            form.style.display = 'none';
+            thankYou.style.display = 'block';
+            thankYou.innerHTML = "<h3>See you there!</h3><p>Your RSVP has been sent.</p>";
           }, 500);
         }
       }
 
       document.getElementById('rsvp-form').onsubmit = function() { submitted = true; };
 
+      // 3. COUNTDOWN TIMER
       (function(){
         const target = new Date(2026, 7, 29, 11, 30, 0);
         const update = () => {
@@ -168,6 +193,7 @@
         setInterval(update, 1000); update();
       })();
 
+      // 4. MULTI-SELECT DROPDOWN LOGIC
       function toggleCheckboxArea() {
         const area = document.getElementById("checkboxes-area");
         area.style.display = area.style.display === "block" ? "none" : "block";
@@ -177,11 +203,8 @@
         const checkboxes = document.querySelectorAll(".event-option");
         const label = document.getElementById("select-label");
         const hiddenInput = document.getElementById("final-events-value");
-        
         let selected = [];
-        checkboxes.forEach((cb) => {
-          if (cb.checked) selected.push(cb.value);
-        });
+        checkboxes.forEach((cb) => { if (cb.checked) selected.push(cb.value); });
 
         if (selected.length > 0) {
           label.innerText = selected.join(", ");
