@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-   <body>
     <div class="mural-background"></div>
     <div class="paper-overlay"></div>
     <main class="main-wrapper">
@@ -31,17 +30,17 @@
       <section id="home" class="hero">
         <div class="hero-card">
           <div class="names-row">
-  <h1 class="names-display">
-    <span class="name-top">Nandhana</span>
-    <span class="amp">&amp;</span>
-    <span class="name-bottom">Sanjiv</span>
-  </h1>
-</div>
+            <h1 class="names-display">
+              <span class="name-top">Nandhana</span>
+              <span class="amp">&</span>
+              <span class="name-bottom">Sanjiv</span>
+            </h1>
+          </div>
           <div class="hero-info-stack">
-  <p class="hero-date">29 AUGUST 2026</p>
-  <p class="hero-location">PAYYANUR, KERALA</p>
-</div>
-<div class="kasavu-accent"></div>
+            <p class="hero-date">29 AUGUST 2026</p>
+            <p class="hero-location">PAYYANUR, KERALA</p>
+          </div>
+          <div class="kasavu-accent"></div>
           <div class="kasavu-accent"></div>
         </div>
         
@@ -85,6 +84,7 @@
           <form action="https://docs.google.com/forms/d/e/1FAIpQLSd4uz7SgpTVBNQTncGWmpvTUQr53lzwjSpaETrtydIZv3HTVw/formResponse" method="POST" id="rsvp-form" target="hidden_iframe">
             <input type="text" name="entry.1466417396" placeholder="Your Full Name" required>
             <input type="text" name="entry.1156887547" placeholder="Contact Number?" required>
+            
             <select name="entry.877086558" required>
               <option value="" disabled selected>Are you coming?</option>
               <option value="Yes">Yes!</option>
@@ -101,13 +101,20 @@
               <option value="5">5</option>
             </select>
 
-            <select name="entry.734955195" required>
-              <option value="" disabled selected>Events you plan to attend?</option>
-              <option value="Sangeeth">Sangeeth</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Reception">Reception</option>  
-              <option value="All">All Events</option> 
-            </select>
+            <div class="rsvp-dropdown-wrapper">
+              <div class="custom-multiselect">
+                <div class="select-box" onclick="toggleCheckboxArea()">
+                  <span id="select-label">Events you plan to attend?</span>
+                  <span class="arrow-icon">▾</span>
+                </div>
+                <div id="checkboxes-area" class="checkbox-options" style="display: none;">
+                  <label><input type="checkbox" class="event-option" value="Sangeeth" onchange="updateLabel()"> Sangeeth</label>
+                  <label><input type="checkbox" class="event-option" value="Wedding" onchange="updateLabel()"> Wedding</label>
+                  <label><input type="checkbox" class="event-option" value="Reception" onchange="updateLabel()"> Reception</label>
+                </div>
+              </div>
+              <input type="hidden" name="entry.734955195" id="final-events-value">
+            </div>
 
             <select name="entry.305230036" required>
               <option value="" disabled selected>Are you a friend of Sanjiv, Nandhana, or both?</option>
@@ -123,29 +130,32 @@
         </div>
       </section>
 
-     <footer>
-  <div class="footer-content">
-    <div class="footer-line"></div>
-    <p class="footer-names">
-      - S <span class="amp">&amp;</span> N <span class="heart">❤</span>
-    </p>
-  </div>
-</footer>
+      <footer>
+        <div class="footer-content">
+          <div class="footer-line"></div>
+          <p class="footer-names">
+            - S <span class="amp">&</span> N <span class="heart">❤</span>
+          </p>
+        </div>
+      </footer>
     </main>
 
     <script>
       var submitted = false;
-function handleFormSuccess() {
-  if(submitted) {
-    document.getElementById('rsvp-form').style.opacity = '0';
-    setTimeout(() => {
-      document.getElementById('rsvp-form').style.display = 'none';
-      document.getElementById('thank-you-msg').style.display = 'block';
-      document.getElementById('thank-you-msg').innerHTML = "<h3>See you there!</h3><p>Your RSVP has been sent.</p>";
-    }, 500);
-  }
-}
+      
+      function handleFormSuccess() {
+        if(submitted) {
+          document.getElementById('rsvp-form').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('rsvp-form').style.display = 'none';
+            document.getElementById('thank-you-msg').style.display = 'block';
+            document.getElementById('thank-you-msg').innerHTML = "<h3>See you there!</h3><p>Your RSVP has been sent.</p>";
+          }, 500);
+        }
+      }
+
       document.getElementById('rsvp-form').onsubmit = function() { submitted = true; };
+
       (function(){
         const target = new Date(2026, 7, 29, 11, 30, 0);
         const update = () => {
@@ -157,6 +167,38 @@ function handleFormSuccess() {
         };
         setInterval(update, 1000); update();
       })();
+
+      function toggleCheckboxArea() {
+        const area = document.getElementById("checkboxes-area");
+        area.style.display = area.style.display === "block" ? "none" : "block";
+      }
+
+      function updateLabel() {
+        const checkboxes = document.querySelectorAll(".event-option");
+        const label = document.getElementById("select-label");
+        const hiddenInput = document.getElementById("final-events-value");
+        
+        let selected = [];
+        checkboxes.forEach((cb) => {
+          if (cb.checked) selected.push(cb.value);
+        });
+
+        if (selected.length > 0) {
+          label.innerText = selected.join(", ");
+          label.style.color = "#333"; 
+          hiddenInput.value = selected.join(", ");
+        } else {
+          label.innerText = "Events you plan to attend?";
+          label.style.color = "#757575"; 
+          hiddenInput.value = "";
+        }
+      }
+
+      window.addEventListener('click', function(e) {
+        if (!document.querySelector('.custom-multiselect').contains(e.target)) {
+          document.getElementById("checkboxes-area").style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>

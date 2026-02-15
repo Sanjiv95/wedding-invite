@@ -345,3 +345,106 @@ footer {
     margin-top: 35px;
 }
 }
+
+/* --- Custom RSVP Multi-Select Dropdown --- */
+
+.rsvp-dropdown-wrapper {
+  position: relative;
+  /* Reduced margins: 15px top, 0 left/right, 10px bottom (tightens the gap) */
+  margin: 15px 0 0px 0; 
+  width: 100% !important; 
+  display: block;
+  box-sizing: border-box;
+}
+
+.custom-multiselect {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-multiselect .select-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #987500; 
+  
+  /* Increased padding: 14px top/bottom makes it taller, 12px sides */
+  padding: 17px 12px; 
+  
+  /* Standardizing height can often fix the "different size" look */
+  min-height: 48px; 
+
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #757575;
+  transition: all 0.3s ease;
+
+  /* Ensures it takes the full width available */
+  width: 100% !important;
+  box-sizing: border-box; 
+  
+  /* Prevents any parent padding from shrinking the box */
+  margin: 0;
+}
+
+/* Hover effect */
+.custom-multiselect .select-box:hover {
+  background: rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.checkbox-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid #987500; 
+  border-top: none;
+  z-index: 100;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: 0 0 4px 4px;
+  margin-top: 0; /* Removed gap between box and dropdown list */
+  box-sizing: border-box;
+}
+
+.checkbox-options label {
+  display: flex !important;
+  align-items: center;
+  padding: 10px 15px; /* Slightly tighter padding */
+  margin: 0 !important;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #444;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.checkbox-options label:last-child {
+  border-bottom: none;
+}
+
+.checkbox-options input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 12px !important;
+  cursor: pointer;
+  accent-color: #D4AF37;
+}
+
+.arrow-icon {
+  font-size: 10px;
+  color: #987500; 
+}
+
+/* Responsive tweak */
+@media (max-width: 480px) {
+  .custom-multiselect .select-box {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
